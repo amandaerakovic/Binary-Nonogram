@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        .box {
+            width: 50px;
+            height: 50px;
+            border: 1px solid black;
+            display: inline-block;
+            line-height: 50px;
+            text-align: center;
+            user-select: none;
+            cursor: pointer;
+            border-radius: 10px;
+        }
+        #boxes {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            text-align: center;
+        }
+        #countButton {
+            position: absolute;
+            top: 60%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+        #output {
+            position: absolute;
+            top: 65%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+    </style>
+</head>
+<body>
+
+    <div id="boxes">
+        <!-- Boxes will be created here by JavaScript -->
+    </div>
+
+    <button id="countButton" onclick="getValues()">Count</button>
+
+    <p id="output"></p>
+
+    <script>
+        // Create 8 boxes
+        for (let i = 0; i < 8; i++) {
+            let box = document.createElement('div');
+            box.className = 'box';
+            box.textContent = '0';
+            box.onclick = function() {
+                // Toggle between 0 and 1 when the box is clicked
+                this.textContent = this.textContent === '0' ? '1' : '0';
+            };
+            document.getElementById('boxes').appendChild(box);
+        }
+
+        function getValues() {
+            // Get the values of all boxes
+            let boxes = document.getElementsByClassName('box');
+            let values = Array.from(boxes).map(box => box.textContent);
+            document.getElementById('output').innerHTML = values.join(', ');
+        }
+    </script>
+
+</body>
+</html>
